@@ -24,7 +24,7 @@ function search() {
         div.className = "card";
         div.innerHTML = `
             <strong>${person.Firstname} ${person.Lastname}</strong><br>
-            Table Number: ${person["Table Number"]}
+            Table Number: ${person["Table"]}
         `;
         resultDiv.appendChild(div);
     });
