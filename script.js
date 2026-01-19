@@ -9,11 +9,11 @@ fetch("data.xlsx")
         excelData = XLSX.utils.sheet_to_json(sheet);
     });
 
-// Trigger search on typing
-document.getElementById("searchInput").addEventListener("keyup", search);
+// Trigger search ONLY on button click
+document.getElementById("searchButton").addEventListener("click", search);
 
 function search() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
     const resultDiv = document.getElementById("result");
 
     resultDiv.innerHTML = "";
@@ -31,13 +31,12 @@ function search() {
     }
 
     results.forEach(person => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-        <strong>${person.Firstname} ${person.Lastname}</strong><br>
-        Table Number: ${person.Table}
-    `;
-    resultDiv.appendChild(div);
-});
-
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+            <strong>${person.Firstname} ${person.Lastname}</strong><br>
+            Table Number: ${person["Table Number"]}
+        `;
+        resultDiv.appendChild(div);
+    });
 }
