@@ -1,3 +1,14 @@
+let excelData = [];
+
+// Load Excel file on page load
+fetch("data.xlsx")
+    .then(res => res.arrayBuffer())
+    .then(data => {
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        excelData = XLSX.utils.sheet_to_json(sheet);
+    });
+
 function search() {
     const input = document.getElementById("searchInput").value;
 
