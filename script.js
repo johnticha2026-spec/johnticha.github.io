@@ -10,7 +10,7 @@ function search() {
 
     // Search ONLY by Firstname (full or partial match)
     const results = excelData.filter(row =>
-        row.Firstname ||
+        row.Lastname.toLowerCase().includes(query) ||
         row.Firstname.toLowerCase().includes(query)
     );
 
