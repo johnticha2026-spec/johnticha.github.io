@@ -31,11 +31,13 @@ function search() {
     }
 
     results.forEach(person => {
-        const p = document.createElement("p");
-        p.innerHTML = `
-            <strong>${person.Firstname} ${person.Lastname}</strong><br>
-            Table Number: ${person.Table}
-        `;
-        resultDiv.appendChild(p);
-    });
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+        <strong>${person.Firstname} ${person.Lastname}</strong><br>
+        Table Number: ${person.Table}
+    `;
+    resultDiv.appendChild(div);
+});
+
 }
