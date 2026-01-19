@@ -24,7 +24,7 @@ function search() {
 
     // Search ONLY by Firstname (partial or full)
     const results = excelData.filter(row =>
-        (row.Firstnamerow.Firstname.toString().toLowerCase().trim()+
+        (row.Lastname.row.Firstname.toString().toLowerCase().trim()+
         row.Firstname.toString().toLowerCase().trim()).includes(query)
     );
 
