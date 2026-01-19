@@ -5,33 +5,34 @@ function search() {
         .trim();
 
     const resultDiv = document.getElementById("result");
+
+    // Clear previous results
     resultDiv.innerHTML = "";
 
-    if (query === "") return;
+    // Show nothing until Search is clicked with text
+    if (!query) return;
 
     const results = excelData.filter(row => {
         if (!row.Firstname) return false;
 
-        const firstName = row.Firstname
+        return row.Firstname
             .toString()
             .toLowerCase()
-            .trim();
-
-        return firstName.includes(query);
+            .includes(query);
     });
 
     if (results.length === 0) {
-        resultDiv.innerHTML = "<p>No results found</p>";
+        resultDiv.innerHTML = `<div class="card">No results found</div>`;
         return;
     }
 
     results.forEach(person => {
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
+        const item = document.createElement("div");
+        item.className = "card";
+        item.innerHTML = `
             <strong>${person.Firstname} ${person.Lastname}</strong><br>
-            Table Number: ${person["Table"]}
+            Table Number: ${person["Table Number"]}
         `;
-        resultDiv.appendChild(div);
+        resultDiv.appendChild(item);
     });
 }
