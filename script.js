@@ -2,7 +2,7 @@ function search() {
     const query = document.getElementById("searchInput").value
         .toString()
         .toLowerCase()
-        .trim();
+        .replace(/\s+/g, ""); // remove ALL spaces
 
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = "";
@@ -15,9 +15,11 @@ function search() {
         const fullName = (
             row.Firstname.toString().trim() +
             row.Lastname.toString().trim()
-        ).toLowerCase();
+        )
+            .toLowerCase()
+            .replace(/\s+/g, ""); // safety: no spaces
 
-        return fullName.includes(query.replace(/\s+/g, ""));
+        return fullName.includes(query);
     });
 
     if (results.length === 0) {
