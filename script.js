@@ -9,34 +9,37 @@ fetch("data.xlsx")
         excelData = XLSX.utils.sheet_to_json(sheet);
     });
 
-// Trigger search ONLY on button click
-document.getElementById("searchButton").addEventListener("click", search);
-
 function search() {
-    const query = document.getElementById("searchInput").value.toLowerCase().trim();
+    const query = document.getElementById("searchInput").value
+        .toLowerCase()
+        .trim();
+
     const resultDiv = document.getElementById("result");
 
+    // Always clear results
     resultDiv.innerHTML = "";
 
+    // Do nothing until Search button is clicked with input
     if (!query) return;
 
+    // Search ONLY by Firstname (partial or full)
     const results = excelData.filter(row =>
-        row.Firstname.toLowerCase().includes(query) ||
-        row.Lastname.toLowerCase().includes(query)
+        row.Firstname &&
+        row.Firstname.toString().toLowerCase().includes(query)
     );
 
     if (results.length === 0) {
-        resultDiv.innerHTML = "<p>No results found</p>";
+        resultDiv.innerHTML = `<div class="card">No results found</div>`;
         return;
     }
 
     results.forEach(person => {
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
             <strong>${person.Firstname} ${person.Lastname}</strong><br>
             Table Number: ${person["Table Number"]}
         `;
-        resultDiv.appendChild(div);
+        resultDiv.appendChild(card);
     });
 }
