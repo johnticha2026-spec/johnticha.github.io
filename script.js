@@ -1,18 +1,24 @@
 function search() {
-    const query = document.getElementById("searchInput").value.toLowerCase().trim();
-    const resultDiv = document.getElementById("result");
+    const query = document.getElementById("searchInput").value
+        .toString()
+        .toLowerCase()
+        .trim();
 
-    // Always clear results first
+    const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = "";
 
-    // Do nothing if search button is clicked with empty input
-    if (!query) return;
+    if (query === "") return;
 
-    // Search ONLY by Firstname (full or partial match)
-    const results = excelData.filter(row =>
-        row.Lastname.toLowerCase().includes(query) 
-        //|| row.Firstname.toLowerCase().includes(query)
-    );
+    const results = excelData.filter(row => {
+        if (!row.Firstname) return false;
+
+        const firstName = row.Firstname
+            .toString()
+            .toLowerCase()
+            .trim();
+
+        return firstName.includes(query);
+    });
 
     if (results.length === 0) {
         resultDiv.innerHTML = "<p>No results found</p>";
