@@ -1,28 +1,17 @@
-let excelData = [];
-
-// Load Excel file on page load
-fetch("data.xlsx")
-    .then(res => res.arrayBuffer())
-    .then(data => {
-        const workbook = XLSX.read(data, { type: "array" });
-        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-        excelData = XLSX.utils.sheet_to_json(sheet);
-    });
-
-// Trigger search ONLY on button click
-document.getElementById("searchButton").addEventListener("click", search);
-
 function search() {
     const query = document.getElementById("searchInput").value.toLowerCase().trim();
     const resultDiv = document.getElementById("result");
 
+    // Always clear results first
     resultDiv.innerHTML = "";
 
+    // Do nothing if search button is clicked with empty input
     if (!query) return;
 
+    // Search ONLY by Firstname (full or partial match)
     const results = excelData.filter(row =>
-        row.Firstname.toLowerCase().includes(query) ||
-        row.Lastname.toLowerCase().includes(query)
+        row.Firstname &&
+        row.Firstname.toLowerCase().includes(query)
     );
 
     if (results.length === 0) {
