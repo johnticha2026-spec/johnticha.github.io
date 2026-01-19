@@ -10,23 +10,28 @@ fetch("data.xlsx")
     });
 
 function search() {
+    // Remove ALL spaces from input
     const query = document.getElementById("searchInput").value
+        .toString()
         .toLowerCase()
-        .trim();
+        .replace(/\s+/g, "");
 
     const resultDiv = document.getElementById("result");
-
-    // Always clear results
     resultDiv.innerHTML = "";
 
-    // Do nothing until Search button is clicked with input
     if (!query) return;
 
-    // Search ONLY by Firstname (partial or full)
-    const results = excelData.filter(row =>
-        (row.Lastname.row.Firstname.toString().toLowerCase().trim()+
-        row.Firstname.toString().toLowerCase().trim()).includes(query)
-    );
+    const results = excelData.filter(row => {
+        if (!row.Firstname || !row.Lastname) return false;
+
+        // Combine firstname + lastname with NO spaces
+        const fullName = (
+            row.Firstname.toString().toLowerCase().trim() +
+            row.Lastname.toString().toLowerCase().trim()
+        ).replace(/\s+/g, "");
+
+        return fullName.includes(query);
+    });
 
     if (results.length === 0) {
         resultDiv.innerHTML = `<div class="card">No results found</div>`;
