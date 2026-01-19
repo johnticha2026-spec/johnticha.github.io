@@ -24,7 +24,7 @@ function search() {
             .toLowerCase()
             .replace(/\s+/g, "");
 
-        // STRICT match 
+        // STRICT match
         return fullName.includes(query);
     });
 
