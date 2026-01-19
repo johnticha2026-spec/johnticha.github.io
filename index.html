@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Page</title>
+    <meta charset="UTF-8">
+    <title>Guest Search</title>
+
+    <!-- SheetJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 5px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>This is a paragraph on my website.</p>
-    <a href="https://www.google.com">Visit Google</a>
+
+    <h2>Search Guest</h2>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Type first or last name"
+    >
+    <button onclick="search()">Search</button>
+
+    <div class="result" id="result"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
