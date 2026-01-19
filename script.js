@@ -1,38 +1,31 @@
 function search() {
-    const query = document.getElementById("searchInput").value
-        .toString()
-        .toLowerCase()
-        .trim();
-
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
     const resultDiv = document.getElementById("result");
 
-    // Clear previous results
+    // Always clear results first
     resultDiv.innerHTML = "";
 
-    // Show nothing until Search is clicked with text
+    // Do nothing if search button is clicked with empty input
     if (!query) return;
 
-    const results = excelData.filter(row => {
-        if (!row.Firstname) return false;
-
-        return row.Firstname
-            .toString()
-            .toLowerCase()
-            .includes(query);
-    });
+    // Search ONLY by Firstname (full or partial match)
+    const results = excelData.filter(row =>
+        row.Firstname.includes(query) || 
+        row.Firstname.toLowerCase().includes(query)
+    );
 
     if (results.length === 0) {
-        resultDiv.innerHTML = `<div class="card">No results found</div>`;
+        resultDiv.innerHTML = "<p>No results found</p>";
         return;
     }
 
     results.forEach(person => {
-        const item = document.createElement("div");
-        item.className = "card";
-        item.innerHTML = `
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
             <strong>${person.Firstname} ${person.Lastname}</strong><br>
             Table Number: ${person["Table Number"]}
         `;
-        resultDiv.appendChild(item);
+        resultDiv.appendChild(div);
     });
 }
