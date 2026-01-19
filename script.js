@@ -2,7 +2,7 @@ function search() {
     const query = document.getElementById("searchInput").value
         .toString()
         .toLowerCase()
-        .trim().replace(/\s+/g, "");
+        .trim();
 
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = "";
