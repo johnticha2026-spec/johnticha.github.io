@@ -8,9 +8,6 @@
     <!-- SheetJS -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-   <!-- js import -->
-        <script src="script.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -32,16 +29,14 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        h1 {
+        .header-img {
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 25px;
-            color: #555;
+        .header-img img {
+            max-width: 100%;
+            height: auto;
         }
 
         .search-box {
@@ -108,13 +103,16 @@
 
 <div class="container">
 
-    <h1>Welcome to</h1>
-   <div class="subtitle"><strong>John & Syntyche Wedding Reception</strong></div>
+    <!-- Wedding Header Image -->
+    <div class="header-img">
+        <img src="entete.png" alt="John & Syntyche Wedding">
+    </div>
+
     <div class="search-box">
         <input
             type="text"
             id="searchInput"
-            placeholder="Type your first or last name"
+            placeholder="Type your name"
         >
         <button id="searchButton" onclick="search()">Search</button>
     </div>
@@ -127,6 +125,7 @@
 
 </div>
 
+<!-- JS at bottom -->
 <script src="script.js"></script>
 
 </body>
