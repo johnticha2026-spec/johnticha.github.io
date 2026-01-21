@@ -49,7 +49,7 @@ function search() {
         card.className = "card";
         card.innerHTML = `
             <strong>${person.Firstname} ${person.Lastname}</strong><br>
-            Table Number: ${person["Table Number"]}
+            Table Number: ${person["Table"]}
         `;
         resultDiv.appendChild(card);
     });
